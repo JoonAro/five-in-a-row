@@ -2,13 +2,35 @@ const dimensions = 5; // The initial board size is dimensions x dimensions
 const winLength = 5; // How many stones needed to win
 const board = []; // The game board
 let turn = 'X'; // Starting player. The other player is 'O'.
-
+const emptyString = "";
 function initializeGame() {
     // TODO: Task 1
     // Initialize the game board to be an array of five arrays.
     // Each of the inner arrays should contain five empty strings.
     // Use the variable dimensions instead of hard coding the number five.
+    
+    /* var slider = [];
+    
+    for (var i = 1; i <= 13; i++) {
+        slider.push(new Slider("#survey" + i, options));
+    } */
+    
+    for (let counter = 0; counter < dimensions ; counter++) {
+    
+    
+    let name = 'row' + counter;
+    window[name] = [];
+    for (let counter2 = 0; counter2 < dimensions ; counter2++) {
+    
+            window[name].push(emptyString);
+          }
+          board.push(window[name]);
+        }
 }
+console.log(board);
+
+
+
 
 function nextTurn() {
     if (turn === 'X') {
@@ -42,27 +64,31 @@ function handleClick(event) {
     let square = event.target;
     let x = square.dataset.x;
     let y = square.dataset.y;
-
+//up above you can find the x and y variables you need to decide wich way to expand the board
+//underneath you remove eventlistener from the square that was clicked
     board[y][x] = turn;
     square.textContent = turn;
     square.removeEventListener('click', handleClick);
 
     checkWin(x, y);
-
-    // TODO: Task 2 A
-    // Implement the conditions when the board should be expanded.
-    // Ie when the player clicks the extreme rows or columns.
-    /* 
-    if ( ) {
-        expandBoard('LEFT');
-    }
-    else if ( ) {
-        expandBoard('RIGHT');
-    }
-    if ( ) {
+//if x or y = the first or the last item of an array expand board
+// TODO: Task 2 A
+// Implement the conditions when the board should be expanded.
+// Ie when the player clicks the extreme rows or columns.
+/* 
+//if x =
+if (x = 0 ) {
+    expandBoard('LEFT');
+}
+else if ( ) {
+    //if board[x] is the last item in an array
+    expandBoard('RIGHT');
+}
+if (y = 0 ) {
         expandBoard('UP');
     }
     else if ( ) {
+    //if board[y] is the last item in an array
         expandBoard('DOWN');
     }
     */
